@@ -25,7 +25,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   };
 
   return (
-    <div className="prompt_card" onClick={handleCardClick}>  {/* Handle card click */}
+    <div className="prompt_card">  {/* Handle card click */}
       <div className="flex justify-between items-start gap-5">
         <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
           <Image
@@ -34,6 +34,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             width={40}
             height={40}
             className="rounded-full object-contain"
+            onClick={handleCardClick}
           />
 
           <div className="flex flex-col">
@@ -53,8 +54,8 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
                 ? "/assets/icons/tick.svg"
                 : "/assets/icons/copy.svg"
             }
-            width={16}
-            height={16}
+            width={20}
+            height={20}
           />
         </div>
       </div>
