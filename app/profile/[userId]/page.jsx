@@ -2,11 +2,13 @@
 
 import Profile from "@components/Profile";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 const UserProfile = ({params}) => {
 
   const [posts, setPosts] = useState([]);
   const userId =params.userId;
   const [userName, setUserName] = useState("");
+  const router= useRouter()
 
   useEffect(() => {
     if (userId) {
