@@ -10,7 +10,7 @@ const PromptCardList = ({ data, handleTagClick }) => {
         <PromptCard
           key={post._id}
           post={post}
-          handleTagClick={handleTagClick} // Pass handleTagClick to each PromptCard
+          handleTagClick={handleTagClick} 
         />
       ))}
     </div>
@@ -36,7 +36,9 @@ const Feed = () => {
     const filtered = posts.filter((post) => {
       const promptMatch = post.prompt.toLowerCase().includes(searchText);
       const tagMatch = post.tag.toLowerCase().includes(searchText);
-      const usernameMatch = post.creator.username.toLowerCase().includes(searchText);
+      const usernameMatch = post.creator.username
+        .toLowerCase()
+        .includes(searchText);
 
       return promptMatch || tagMatch || usernameMatch;
     });
@@ -45,7 +47,9 @@ const Feed = () => {
   };
 
   const handleTagClick = (tag) => {
-    const filtered = posts.filter((post) => post.tag.toLowerCase() === tag.toLowerCase());
+    const filtered = posts.filter(
+      (post) => post.tag.toLowerCase() === tag.toLowerCase()
+    );
     setFilteredPosts(filtered);
   };
 
@@ -57,7 +61,7 @@ const Feed = () => {
       setPosts(data); // Update posts
       setFilteredPosts(data); // Initialize filteredPosts with fetched data
 
-      console.log('Posts fetched:', data);
+      console.log("Posts fetched:", data);
     };
 
     fetchPosts();

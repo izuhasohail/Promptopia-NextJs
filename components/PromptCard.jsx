@@ -1,17 +1,15 @@
-// components/PromptCard.js
-
 "use client";
 
 import { useState } from "react";
 import Image from "next/image";
-import { useRouter , usePathname} from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const [copied, setCopied] = useState("");
   const router = useRouter();
   const { data: session } = useSession();
-  const pathName= usePathname()
+  const pathName = usePathname();
 
   const handleCopy = () => {
     setCopied(post.prompt);
@@ -21,11 +19,13 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   };
 
   const handleCardClick = () => {
-    router.push(`/profile/${post.creator._id}`);  // Navigate to the user's profile page
+    router.push(`/profile/${post.creator._id}`); // Navigate to the user's profile page
   };
 
   return (
-    <div className="prompt_card">  {/* Handle card click */}
+    <div className="prompt_card">
+      {" "}
+      {/* Handle card click */}
       <div className="flex justify-between items-start gap-5">
         <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
           <Image
@@ -59,23 +59,32 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           />
         </div>
       </div>
-
       <p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
-      <p className="font-inter text-sm blue_gradient cursor-pointer" onClick={() => handleTagClick && handleTagClick(post.tag)}>
+      <p
+        className="font-inter text-sm blue_gradient cursor-pointer"
+        onClick={() => handleTagClick && handleTagClick(post.tag)}
+      >
         #{post.tag}
       </p>
+      {session?.user.id === post.creator._id &&
+        (pathName == "/profile" ||
+          pathName === `/profile/${session?.user.id}`) && (
+          <div className="mt-5 flex-center gap-4 border-t border-gray-100 pt-3">
+            <p
+              className="font-inter text-sm green_gradient cursor-pointer"
+              onClick={handleEdit}
+            >
+              Edit
+            </p>
 
-      {session?.user.id === post.creator._id && (pathName=='/profile' || pathName===`/profile/${session?.user.id}`) && (
-        <div className="mt-5 flex-center gap-4 border-t border-gray-100 pt-3">
-          <p className="font-inter text-sm green_gradient cursor-pointer" onClick={handleEdit}>
-            Edit
-          </p>
-
-          <p className="font-inter text-sm orange_gradient cursor-pointer" onClick={handleDelete}>
-            Delete
-          </p>
-        </div>
-      )}
+            <p
+              className="font-inter text-sm orange_gradient cursor-pointer"
+              onClick={handleDelete}
+            >
+              Delete
+            </p>
+          </div>
+        )}
     </div>
   );
 };

@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-
 import Form from "@components/Form";
 
 const EditPromptContent = () => {
@@ -21,9 +20,9 @@ const EditPromptContent = () => {
 
       try {
         const response = await fetch(`/api/prompt/${promptId}`);
-        
+
         if (!response.ok) {
-          console.error('Failed to fetch prompt details');
+          console.error("Failed to fetch prompt details");
           return;
         }
 
@@ -34,7 +33,7 @@ const EditPromptContent = () => {
           tag: data.tag || "",
         });
       } catch (error) {
-        console.error('Error fetching prompt details:', error);
+        console.error("Error fetching prompt details:", error);
       }
     };
 
@@ -54,7 +53,7 @@ const EditPromptContent = () => {
       const response = await fetch(`/api/prompt/${promptId}`, {
         method: "PATCH",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           prompt: post.prompt,
@@ -65,10 +64,10 @@ const EditPromptContent = () => {
       if (response.ok) {
         router.push("/");
       } else {
-        console.error('Failed to update prompt');
+        console.error("Failed to update prompt");
       }
     } catch (error) {
-      console.error('Error updating prompt:', error);
+      console.error("Error updating prompt:", error);
     } finally {
       setSubmitting(false);
     }

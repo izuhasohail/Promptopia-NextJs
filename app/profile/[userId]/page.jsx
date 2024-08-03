@@ -1,14 +1,13 @@
-"use client"
+"use client";
 
 import Profile from "@components/Profile";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-const UserProfile = ({params}) => {
-
+const UserProfile = ({ params }) => {
   const [posts, setPosts] = useState([]);
-  const userId =params.userId;
+  const userId = params.userId;
   const [userName, setUserName] = useState("");
-  const router= useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     if (userId) {
@@ -27,14 +26,12 @@ const UserProfile = ({params}) => {
   }, [userId]);
 
   useEffect(() => {
-    // Ensure `userId` is defined before making the API call
     if (userId) {
       const fetchUserDetails = async () => {
         try {
-          // Fetch the user's details to get the name
           const userResponse = await fetch(`/api/users/${userId}`);
           const userData = await userResponse.json();
-          
+
           setUserName(userData.username); // Set the user's name
 
           // Fetch the user's posts
@@ -73,17 +70,17 @@ const UserProfile = ({params}) => {
     }
   };
 
-  if (!userId) return <div>Loading...</div>; // Optional: Handle the loading state
+  if (!userId) return <div>Loading...</div>;
 
   return (
     <Profile
-    name={userName} // Use the user's name here
-    desc={`Welcome to ${userName}'s profile page`} // Update the description dynamically
-    data={posts}
-    handleEdit={handleEdit}
-    handleDelete={handleDelete}
-  />
+      name={userName}
+      desc={`Welcome to ${userName}'s profile page`} 
+      data={posts}
+      handleEdit={handleEdit}
+      handleDelete={handleDelete}
+    />
   );
 };
 
-export default UserProfile
+export default UserProfile;
