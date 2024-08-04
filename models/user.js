@@ -16,6 +16,7 @@ const userSchema= new Schema({
     }
 })
 
+//checking if User model already exists
 
 const User= models.User || model('User',userSchema)
 

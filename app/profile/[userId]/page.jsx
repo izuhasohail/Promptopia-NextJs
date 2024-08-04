@@ -1,5 +1,4 @@
 "use client";
-
 import Profile from "@components/Profile";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -29,6 +28,8 @@ const UserProfile = ({ params }) => {
     if (userId) {
       const fetchUserDetails = async () => {
         try {
+
+          //fetching the user
           const userResponse = await fetch(`/api/users/${userId}`);
           const userData = await userResponse.json();
 
