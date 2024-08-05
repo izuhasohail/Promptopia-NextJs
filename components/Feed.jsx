@@ -26,7 +26,6 @@ const Feed = () => {
     const searchText = e.target.value.toLowerCase();
     setSearchText(searchText);
 
-    // Check if the search bar is empty, display all posts
     if (!searchText) {
       setFilteredPosts(posts);
       return;
