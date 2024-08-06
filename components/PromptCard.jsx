@@ -18,7 +18,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   };
 
   const handleCardClick = () => {
-    router.push(`/profile/${post.creator._id}`); // Navigate to the user's profile page
+    router.push(`/profile/${post.creator._id}`); 
   };
 
   return (
